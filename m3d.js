@@ -26,10 +26,15 @@ vec3.create = function( vector )
 {
     var result = new ArrayType( 3 );
 
-    if (source) {
+    if (vector) 
+    {
         result[0] = vector[0];
         result[1] = vector[1];
         result[2] = vector[2];
+    }
+    else
+    {
+        result[0] = result[1] = result[2] = 0;
     }
 
     return result;
@@ -65,6 +70,7 @@ vec3.normalize = function( vector, result )
 
     if (!length) {
         result[0] = 0, result[1] = 0, result[2] = 0;
+        return result;
     }
     
     result[0] = vector[0] / length;
@@ -159,7 +165,9 @@ vec3.set = function( vector, result )
  */
 vec3.string = function( vector )
 {
-    return "[ " + vector[0] + ", " + vector[1] + ", " + vector[2] + " ]";
+    return "| " + vector[0] + " |\n" + 
+           "| " + vector[1] + " |\n" + 
+           "| " + vector[2] + " |\n";
 };
 
 
@@ -412,12 +420,12 @@ mat4.ortho = function( left, right, bottom, top, near, far, result )
 
     if (!result) result = mat4.create();
    
-    result[0]  = 2 / dx;
-    result[5]  = 2 / dy;
+    result[0]  =  2 / dx;
+    result[5]  =  2 / dy;
     result[10] = -2 / dz;
     result[12] = -(left + right) / dx;
     result[13] = -(top + bottom) / dy;
-    result[14] = -(far + near) / dz;
+    result[14] = -(far + near)   / dz;
    
     return result;
 };
@@ -429,9 +437,9 @@ mat4.lookAt = function( result )
 
 mat4.string = function( matrix )
 {
-    return "| " + matrix[0] + " " + matrix[4] + " " + matrix[8]  + " " + matrix[12] + "|\n" +
-           "| " + matrix[1] + " " + matrix[5] + " " + matrix[9]  + " " + matrix[13] + "|\n" +
-           "| " + matrix[2] + " " + matrix[6] + " " + matrix[10] + " " + matrix[14] + "|\n" +
-           "| " + matrix[3] + " " + matrix[7] + " " + matrix[11] + " " + matrix[15] + "|\n";
+    return "| " + matrix[0] + " " + matrix[4] + " " + matrix[8]  + " " + matrix[12] + " |\n" +
+           "| " + matrix[1] + " " + matrix[5] + " " + matrix[9]  + " " + matrix[13] + " |\n" +
+           "| " + matrix[2] + " " + matrix[6] + " " + matrix[10] + " " + matrix[14] + " |\n" +
+           "| " + matrix[3] + " " + matrix[7] + " " + matrix[11] + " " + matrix[15] + " |\n";
 };
 
