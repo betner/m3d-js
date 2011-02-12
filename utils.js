@@ -103,7 +103,10 @@ function getShader(gl, id) {
     return shader;
   }
 
-function initShaders( vertexShaderName, fragmentShaderName, context )
+/**
+ * Test function, initializes basic shaders for testing
+ */
+function initTestShaders( vertexShaderName, fragmentShaderName, context )
 {
     var vertexShader   = getShader( gl, vertexShaderName );
     var fragmentShader = getShader( gl, fragmentShaderName );
